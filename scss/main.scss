@@ -1,0 +1,363 @@
+@import 'config';
+@import 'menu';
+
+// What does box-sizing mean? It allows for boxes to have the same size even with different paddings.
+// What other box-sizing are there besides border-box? Content box is the default with the padding being seperate from width/height.
+* {
+  box-sizing: border-box;
+}
+// This is the home page. The sass doesn't do much other than setting the location of things, including the photo.
+body {
+  @include background;
+  background: $primary-color;
+  // What is set-text-color? Color of text ****************************
+  // What other similar things exists?
+  /* 
+  Color
+  */
+  color: set-text-color($primary-color);
+  // color: $primary-color;
+
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+
+// Headings this has the settings for all of the headings seen in the portfolio such as the size and color and such.
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+
+  &.lg-heading {
+    // Font Size, REM, vs EM vs Pixel vs VH & VW
+    /*
+    ********************************************
+    Rem is the browser styleand scales accordingly, but pixels do not. Em scales to things within the document. vh/vw refer to a percent of the browser.(80vh=80% of the height for browser). % is generic.
+    */
+    font-size: 6rem;
+    // What negaitve margin is, and if its appropriate to use Negative margin for your use case.
+    /*
+    */
+    // Figure out another way to do this w/o using margin
+
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    // padding/margin: top right bottom left
+    // padding/margin: top/bottom left/right
+    padding: 0.2rem 1rem;
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+
+a {
+  color: #fff;
+  // Look up other text-decorations and write examples of what you would use those text-decorations for...At least 3 other text-decocaration
+  /*
+  overline
+  line-through
+  underline
+  
+  */
+  text-decoration: none;
+}
+
+header {
+  // Position Fixed vs relative
+  // Figure out why fixed is used for this.
+  position: fixed;
+  
+  z-index: 2;
+  // Look up what happens when you use percent for widths and height...(It's relative to what?)
+  /*
+  Relative to the parent elemet
+  */
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  .home-img {
+    border: $secondary-color 3px solid;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+
+
+  }
+  padding: 50px;
+  // height: 100%;
+  min-height: calc(100vh - 90px);
+
+  .icons {
+    margin-top: 1rem;
+
+    a {
+      padding: 0.4rem;
+      @include easeOut;
+
+      &:hover {
+        color: $secondary-color;
+      }
+      // the hover is for what happens when one puts the mouse over the icon. The icon should turn from white to whatever the secondary color is.
+    }
+  }
+
+  &#home {
+    // Look up other overflow options, and how ppl implement showing the overflows
+    overflow: hidden;
+  /*
+  Overflow dictates if text will show up outside the space allotted. There is show, hidde,scroll,auto,and x/y
+  */
+  }
+}
+
+//This section  is the grid area. the display grid makes it a grid. The grid-template-area sets each part of the grid. Some areas have the same designation in order to make it take up more spaces.
+
+.about-info {
+  // Look into details what display:grid does
+  // Look up other grid methods
+  // Figure out what grid-gap, and grid-template-columns are doing
+  /*
+  Display grid makes a grid with boxes, you can put it with a grid container and ten grid items or do it with grid template areas.
+  grid-gap/grid-template-columns is the space between boxes
+  */
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+    'bioimage bio bio'
+    'job1 job2 job3';
+    // this is setting the possible area that we want the text to fall in. Since bio is taking up two blocks, it is used twice.
+  grid-template-columns: repeat(3, 1fr);
+
+  .bio-image {
+    grid-area: bioimage;
+    // what is margin auto?
+    /*
+    the same space on all sides, you can also set the margin manually by inputting the exact amount.
+    */
+    margin: auto;
+    border: $secondary-color 3px solid;
+    height: 400px;
+  }
+
+  .bio {
+    grid-area: bio;
+    // This assigns what area the text will fall.
+    font-size: 1.5rem;
+  }
+
+  .job-1 {
+    grid-area: job1;
+  }
+
+  .job-2 {
+    grid-area: job2;
+  }
+
+  .job-3 {
+    grid-area: job3;
+  }
+
+  .job {
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: $secondary-color 5px solid;
+    // for every class with text a box will appear around it, with the properties that has been assigned to it.
+  }
+}
+// The area is the my work page, it is designed to show any potential projects that I have worked on.
+
+ .projects {
+   display: grid;
+   grid-gap: 0.7rem;
+   grid-template-columns: repeat(3, 1fr);
+
+   img {
+     width: 100%;
+     border: 3px #fff solid;
+
+     &:hover {
+       opacity: 0.5;
+       border-color: $secondary-color;
+       @include easeOut;
+     }
+   }
+ }
+
+// Contact Page, phone and email section , boxes will shrink upon hover.
+.boxes {
+  // What is display flex? ************************************************
+  // Other diplay similar to flex
+  /*
+  Display flex is similar to grid with the presentation however it differs in that is mostly left to right and not top to bottom.
+  */
+  display: flex;
+  //What is flex-wrap?
+  /*
+  wrap determines if a flex box will stay on one line or if it will move on to the nex line instead.
+  */
+  flex-wrap: wrap;
+  // What is justify content, and what other justify-content is there
+  /*
+  justify content determines the position of the boxes, there is also flex-start,flex-end, etc.
+  */
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div {
+    font-size: 2rem;
+    border: 3px #fff solid;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    @include easeOut;
+
+    &:hover {
+      padding: 0.5rem 1.5rem;
+      background: $secondary-color;
+      color: set-text-color($secondary-color);
+      span {
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+
+//
+
+// Resume, the resume is split into six boxes, three for headers, three for size. Each box works like the my work page, the size must also be set anytime the amount the text changes.
+
+.resume {
+  display: grid;
+  grid-row-gap: 30px;
+  grid-column-gap: 30px;
+  grid-template-areas: 
+  'education-header education-text' 
+  'exp-header exp-text'
+  'tech-header tech-text';
+  grid-auto-columns: repeat (3, 1fr);
+
+    .education-header{
+      grid-area: education-header;
+      margin:auto;
+      width: 100%
+    }
+
+    .education-text {
+      grid-area: education-text;
+    }
+
+    .exp-header{
+      grid-area: exp-header;
+      margin:auto;
+      width: 100%
+
+    }
+
+    .exp-text {
+      grid-area: exp-text;
+            width: 100%
+
+    }
+
+    .tech-header {
+      grid-area: tech-header;
+      margin: auto;
+      width: 100%
+
+    }
+    .tech-text {
+      grid-area: tech-text;
+      margin: auto;
+      width: 100%
+
+    }
+
+    .qualification-edu1 {
+    background: lighten($primary-color, 5);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    border-right: $secondary-color 5px solid;
+    text-align: left;
+    }
+    .qualification-edu2 {
+    background: lighten($primary-color, 5);
+    padding: 1rem;
+    // border-left: $secondary-color 5px solid;
+    }
+    .qualification-exp1 {
+    background: lighten($primary-color, 5);
+    padding-top: 11rem;
+    padding-bottom: 11rem;
+    padding-left: 3rem;
+    border-right: $secondary-color 5px solid;
+    text-align: left;
+    }
+    .qualification-exp2 {
+    background: lighten($primary-color, 5);
+    padding: 1rem;
+    
+    // border-bottom: $secondary-color 5px solid;
+    }
+    .qualification-tech1 {
+    background: lighten($primary-color, 5);
+    padding: 3rem;
+    border-right: $secondary-color 5px solid;
+    text-align: left;
+    
+    }
+    .qualification-tech2 {
+    background: lighten($primary-color, 5);
+    padding: 1.5rem;
+
+    // border-bottom: $secondary-color 5px solid;
+    }
+
+
+}
+// Button Styles
+.btn {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  &:hover {
+    background: $secondary-color;
+    color: set-text-color($secondary-color);
+  }
+}
+
+.btn-dark {
+  @extend .btn;
+  // Look up syntax,figure out what the 50 stands for ***************************888
+  background: darken($primary-color, 50);
+  color: #fff;
+}
+
+.btn-light {
+  @extend .btn;
+  background: lighten($primary-color, 50);
+  color: #333;
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, 10);
+  color: set-text-color($primary-color);
+  height: 60px;
+}
+
+@import 'mobile';
+
+

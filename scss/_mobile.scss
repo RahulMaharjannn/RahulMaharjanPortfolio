@@ -1,0 +1,93 @@
+// Widescreens
+// Layout of the projects page so it is 4 columns
+@include mediaXl {
+  .projects {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Desktops & Laptops
+// Layout of the prohects page so it is three columns
+@include mediaLg {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Tablets & Small Laptops
+@include mediaMd {
+  //setting for the heading changes
+  main {
+    align-items: center;
+    text-align: center;
+
+    .lg-heading {
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+  }
+
+  ul.menu-nav,
+  div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0;
+
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+// the menu slides in from left/right instead of top/bottom
+  .menu-nav {
+    height: 75vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px;
+  }
+// size of menu font/text
+  .menu-branding {
+    height: 25vh;
+    transform: translate3d(100%, 0, 0);
+// size of picture
+    .portrait {
+      background: url('../img/portrait_small.jpg');
+      width: 150px;
+      height: 150px;
+    }
+  }
+//makes everything into one column
+  .about-info {
+    grid-template-areas:
+      'bioimage'
+      'bio'
+      'job1'
+      'job2'
+      'job3';
+
+    grid-template-columns: 1fr;
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Smartphones
+@include mediaSm {
+  main {
+    padding: 2rem;
+    #home h1 {
+      margin-top: 10vh;
+    }
+
+    .lg-heading {
+      margin-top:1rem;
+      font-size: 5rem;
+    }
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+// This entire section is essentially if the screen is x size then these specific things will change so that it does not look weird.
