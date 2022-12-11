@@ -13,7 +13,7 @@
   "author": "Rahul Maharjan",
   "license": "",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "gh-pages": "^1.2.0",
     "node-sass": "^4.9.2",
     "nodemon": "^2.0.2"
